@@ -5,16 +5,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { fetchData, addElement } from '../redux/actions';
 import { useEffect } from 'react';
-import { Button, message, Space } from 'antd';
+import { message } from 'antd';
+import { Rate } from 'antd';
 
 const Comics = () => {
+    const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
     const [messageApi, contextHolder] = message.useMessage();
-    const [valorSeleccionado, setValorSeleccionado] = useState(null);
+    const [value, setValue] = useState();
     const [randomComicNum, setRandomComicNum] = useState(null);
     const [comicsData, setComicsData] = useState([]);
-    const [valoresIniciales, setValoresIniciales] = useState({
-        estrellas: "",
-    });
 
 
     const success = () => {
@@ -32,7 +31,7 @@ const Comics = () => {
 
     const news = () => {
         dispatch(fetchData(Math.floor(Math.random() * 1000) + 1));
-        setValoresIniciales({ estrellas: "" })
+        setValue(null);
     }
 
     const data = useSelector(state => state.data);
@@ -43,22 +42,14 @@ const Comics = () => {
         e.preventDefault();
         const newComicData = {
             ...data,
-            rating: valorSeleccionado
+            rating: value
         };
-        setComicsData([...comicsData, newComicData]);
-        dispatch(addElement([...comics, newComicData]));
-        setValoresIniciales({ estrellas: "" })
-        setValorSeleccionado(null);
         newRandomComicNum();
         success();
-    };
+        setComicsData([...comicsData, newComicData]);
+        dispatch(addElement([...comics, newComicData]));
+        setValue(null);
 
-    const manejarCambio = (e) => {
-        setValorSeleccionado(e.target.value);
-        setValoresIniciales({
-            ...valoresIniciales,
-            [e.target.name]: e.target.value,
-        });
     };
 
     useEffect(() => {
@@ -83,61 +74,18 @@ const Comics = () => {
                         <Card
                             className="centered-card"
                             cover={<img src={data.img} />}
+                            style={{ textAlign: 'center' }}
                             title={data.title} bordered={false}>
                             <form onSubmit={manejarSubmit}>
-                                <p className="clasificacion">
-                                    <input
-                                        id="radio1"
-                                        type="radio"
-                                        name="estrellas"
-                                        value="5"
-                                        onChange={manejarCambio}
-                                        checked={valoresIniciales.estrellas === "5"}
-                                    />
-                                    <label htmlFor="radio1">★</label>
-                                    <input
-                                        id="radio2"
-                                        type="radio"
-                                        name="estrellas"
-                                        value="4"
-                                        onChange={manejarCambio}
-                                        checked={valoresIniciales.estrellas === "4"}
-                                    />
-                                    <label htmlFor="radio2">★</label>
-                                    <input
-                                        id="radio3"
-                                        type="radio"
-                                        name="estrellas"
-                                        value="3"
-                                        onChange={manejarCambio}
-                                        checked={valoresIniciales.estrellas === "3"}
-                                    />
-                                    <label htmlFor="radio3">★</label>
-                                    <input
-                                        id="radio4"
-                                        type="radio"
-                                        name="estrellas"
-                                        value="2"
-                                        onChange={manejarCambio}
-                                        checked={valoresIniciales.estrellas === "2"}
-                                    />
-                                    <label htmlFor="radio4">★</label>
-                                    <input
-                                        id="radio5"
-                                        type="radio"
-                                        name="estrellas"
-                                        value="1"
-                                        onChange={manejarCambio}
-                                        checked={valoresIniciales.estrellas === "1"}
-                                    />
-                                    <label htmlFor="radio5">★</label>
-                                </p>
-                                {valorSeleccionado && <button type="submit">Send</button>}
+                                <span>
+                                    <Rate tooltips={desc} onChange={setValue} value={value} />
+                                </span>
+
+                                {value && <button type="submit">Send</button>}
                             </form>
                         </Card>
                     </Col>
                 </Row>
-
             </div>
         </>
     );

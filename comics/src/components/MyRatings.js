@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useSelector } from 'react-redux';
 import React from 'react';
-import { List, Card, Col, Row } from 'antd';
+import { List, Card } from 'antd';
+import { Rate } from 'antd';
 
 const MyRatings = () => {
 
@@ -13,7 +14,7 @@ const MyRatings = () => {
         <div className='container'>
             <List
                 locale={{ emptyText: 'No ratings' }}
-                grid={{ gutter: 16, column: 3 }}
+                grid={{ gutter: 16, column: 1 }}
                 dataSource={ratings}
                 renderItem={(item) => (
                     <List.Item>
@@ -22,7 +23,11 @@ const MyRatings = () => {
                             cover={<img src={item.img} />}
                             title={item.title}
                             bordered={false}
-                        />
+                            style={{ textAlign: 'center' }}
+                            
+                        >
+                             <Rate  disabled value={item.rating} />
+                        </Card>
                     </List.Item>
                 )}
             />
