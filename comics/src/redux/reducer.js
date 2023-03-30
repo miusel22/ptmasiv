@@ -1,14 +1,19 @@
 import {
   FETCH_DATA_REQUEST,
   FETCH_DATA_SUCCESS,
-  FETCH_DATA_FAILURE
+  FETCH_DATA_FAILURE,
+  ADD_ELEMENT
 } from './actions';
 
 const initialState = {
   loading: false,
   data: [],
-  error: ''
+  error: '',
+  array: []
+
 };
+
+
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -29,6 +34,12 @@ const reducer = (state = initialState, action) => {
         data: [],
         error: action.payload
       };
+    case ADD_ELEMENT:
+
+      return {
+        ...state,
+        array: action.payload
+      }
     default:
       return state;
   }

@@ -3,6 +3,7 @@ import axios from 'axios';
 export const FETCH_DATA_REQUEST = 'FETCH_DATA_REQUEST';
 export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
 export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
+export const ADD_ELEMENT = 'ADD_ELEMENT';
 
 export const fetchData = (randomNum) => {
     return dispatch => {
@@ -40,3 +41,9 @@ export const fetchDataFailure = error => {
         payload: error
     };
 };
+export const addElement = (data) => {
+    return {
+      type: ADD_ELEMENT,
+      payload: data
+    };
+  };
