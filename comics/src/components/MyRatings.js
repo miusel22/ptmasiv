@@ -6,7 +6,6 @@ import { Rate } from 'antd';
 
 const MyRatings = () => {
 
-
     const ratings = useSelector(state => state.array);
     console.log({ ratings })
 
@@ -24,9 +23,8 @@ const MyRatings = () => {
                             title={item.title}
                             bordered={false}
                             style={{ textAlign: 'center' }}
-                            
                         >
-                             <Rate  disabled value={item.rating} />
+                            <Rate  disabled value={item.rating} />
                         </Card>
                     </List.Item>
                 )}
