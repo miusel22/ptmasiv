@@ -36,21 +36,18 @@ const Comics = () => {
         }
     }, [randomComicNum]);
 
-    const manejarSubmit = (e) => {
+    const manejarSubmit = async (e) => {
         e.preventDefault();
-        setComicsData([...comicsData, {
+        const newComicData = {
             ...data,
             rating: valorSeleccionado
-        }]);
+        };
+        setComicsData([...comicsData, newComicData]);
+        dispatch(addElement([...comics, newComicData]));
         setValoresIniciales({ estrellas: "" })
         setValorSeleccionado(null);
         newRandomComicNum();
     };
-    useEffect(() => {
-        if (comicsData) {
-            dispatch(addElement(comicsData))
-        }
-    }, [comicsData]);
 
     const manejarCambio = (e) => {
         setValorSeleccionado(e.target.value);

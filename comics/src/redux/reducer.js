@@ -36,11 +36,6 @@ const reducer = (state = initialState, action) => {
         error: action.payload
       };
     case ADD_ELEMENT:
-      console.log("los estados", state);
-      console.log("hi", {
-        ...state,
-        array: action.payload
-      });
       return {
         ...state,
         array: action.payload
