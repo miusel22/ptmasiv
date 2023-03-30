@@ -2,11 +2,11 @@
 import { useSelector } from 'react-redux';
 
 
-const Favorites = () => {
+const MyRatings = () => {
 
 
-    const Favorites = useSelector(state => state.array);
-    console.log({ Favorites })
+    const ratings = useSelector(state => state.array);
+    console.log({ ratings })
 
     return (
         <div>
@@ -15,4 +15,4 @@ const Favorites = () => {
     );
 };
 
-export default Favorites;
+export default MyRatings;

@@ -8,7 +8,9 @@ const Comics = () => {
     const [valorSeleccionado, setValorSeleccionado] = useState(null);
     const [randomComicNum, setRandomComicNum] = useState(null);
     const [comicsData, setComicsData] = useState([]);
-    const [newxrandomComicNum, setNewRandomComicNum] = useState(null);
+    const [valoresIniciales, setValoresIniciales] = useState({
+        estrellas: "",
+    });
     const dispatch = useDispatch();
     useEffect(() => {
         newRandomComicNum();
@@ -18,18 +20,15 @@ const Comics = () => {
         setRandomComicNum(Math.floor(Math.random() * 1000) + 1);
     };
 
-    const news = (e) => {
-        console.log("jola");
-        e.preventDefault();
-        setNewRandomComicNum(Math.floor(Math.random() * 1000) + 1);
-        dispatch(fetchData(newxrandomComicNum));
+    const news = () => {
+        dispatch(fetchData(Math.floor(Math.random() * 1000) + 1));
     }
 
     const data = useSelector(state => state.data);
-    
+
     const comics = useSelector(state => state.array);
 
-    console.log({comics});
+    console.log({ comics });
 
     useEffect(() => {
         if (randomComicNum && data) {
@@ -37,29 +36,28 @@ const Comics = () => {
         }
     }, [randomComicNum]);
 
-
-    console.log({ data });
-
-
     const manejarSubmit = (e) => {
         e.preventDefault();
         setComicsData([...comicsData, {
             ...data,
-            retail: valorSeleccionado
+            rating: valorSeleccionado
         }]);
+        setValoresIniciales({ estrellas: "" })
+        setValorSeleccionado(null);
+        newRandomComicNum();
     };
     useEffect(() => {
         if (comicsData) {
-            dispatch(addElement(comicsData));
-
+            dispatch(addElement(comicsData))
         }
-    }, [comicsData])
+    }, [comicsData]);
 
-
-
-    console.log({ comicsData });
     const manejarCambio = (e) => {
         setValorSeleccionado(e.target.value);
+        setValoresIniciales({
+            ...valoresIniciales,
+            [e.target.name]: e.target.value,
+        });
     };
 
     return (
@@ -68,53 +66,58 @@ const Comics = () => {
                 Change
             </button>
             <img src={data.img} />
-            <form onSubmit={manejarSubmit}>
-                <p className="clasificacion">
-                    <input
-                        id="radio1"
-                        type="radio"
-                        name="estrellas"
-                        value="5"
-                        onChange={manejarCambio}
-                    />
-                    <label htmlFor="radio1">★</label>
-                    <input
-                        id="radio2"
-                        type="radio"
-                        name="estrellas"
-                        value="4"
-                        onChange={manejarCambio}
-                    />
-                    <label htmlFor="radio2">★</label>
-                    <input
-                        id="radio3"
-                        type="radio"
-                        name="estrellas"
-                        value="3"
-                        onChange={manejarCambio}
-                    />
-                    <label htmlFor="radio3">★</label>
-                    <input
-                        id="radio4"
-                        type="radio"
-                        name="estrellas"
-                        value="2"
-                        onChange={manejarCambio}
-                    />
-                    <label htmlFor="radio4">★</label>
-                    <input
-                        id="radio5"
-                        type="radio"
-                        name="estrellas"
-                        value="1"
-                        onChange={manejarCambio}
-                    />
-                    <label htmlFor="radio5">★</label>
-                </p>
-                {valorSeleccionado && (
-                    <button type="submit">Send</button>
-                )}
-            </form>
+            <div>
+                <form onSubmit={manejarSubmit}>
+                    <p className="clasificacion">
+                        <input
+                            id="radio1"
+                            type="radio"
+                            name="estrellas"
+                            value="5"
+                            onChange={manejarCambio}
+                            checked={valoresIniciales.estrellas === "5"}
+                        />
+                        <label htmlFor="radio1">★</label>
+                        <input
+                            id="radio2"
+                            type="radio"
+                            name="estrellas"
+                            value="4"
+                            onChange={manejarCambio}
+                            checked={valoresIniciales.estrellas === "4"}
+                        />
+                        <label htmlFor="radio2">★</label>
+                        <input
+                            id="radio3"
+                            type="radio"
+                            name="estrellas"
+                            value="3"
+                            onChange={manejarCambio}
+                            checked={valoresIniciales.estrellas === "3"}
+                        />
+                        <label htmlFor="radio3">★</label>
+                        <input
+                            id="radio4"
+                            type="radio"
+                            name="estrellas"
+                            value="2"
+                            onChange={manejarCambio}
+                            checked={valoresIniciales.estrellas === "2"}
+                        />
+                        <label htmlFor="radio4">★</label>
+                        <input
+                            id="radio5"
+                            type="radio"
+                            name="estrellas"
+                            value="1"
+                            onChange={manejarCambio}
+                            checked={valoresIniciales.estrellas === "1"}
+                        />
+                        <label htmlFor="radio5">★</label>
+                    </p>
+                    {valorSeleccionado && <button type="submit">Send</button>}
+                </form>
+            </div>
         </div>
     );
 };

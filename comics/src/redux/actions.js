@@ -42,7 +42,7 @@ export const fetchDataFailure = error => {
     };
 };
 export const addElement = (data) => {
-    return {
+    return  {
       type: ADD_ELEMENT,
       payload: data
     };
