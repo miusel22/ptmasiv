@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { fetchData, addElement } from '../redux/actions';
 import { useEffect } from 'react';
 import { message } from 'antd';
-import { Rate } from 'antd';
+import { Rate, Button } from 'antd';
 
 const Comics = () => {
     const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
@@ -76,12 +76,12 @@ const Comics = () => {
                             cover={<img src={data.img} />}
                             style={{ textAlign: 'center' }}
                             title={data.title} bordered={false}>
-                            <form onSubmit={manejarSubmit}>
+                            <form>
                                 <span>
                                     <Rate tooltips={desc} onChange={setValue} value={value} />
                                 </span>
 
-                                {value && <button type="submit">Send</button>}
+                                {value && <Button type="primary" onClick={manejarSubmit}>Send</Button>}
                             </form>
                         </Card>
                     </Col>
