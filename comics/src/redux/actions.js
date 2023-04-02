@@ -11,7 +11,6 @@ export const fetchData = (randomNum) => {
         axios
             .get(`http://localhost:5000/comic/${randomNum}`)
             .then(response => {
-                console.log({ response })
                 const data = response.data;
                 dispatch(fetchDataSuccess(data));
             })

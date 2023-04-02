@@ -8,7 +8,9 @@ export const Header = () => {
         <>
             <header id="main-header">
                 <a id="logo-header">
-                    <img src="https://www.freepnglogos.com/uploads/comic-logo-png/comic-pow-explosion-logo-9.png" width="120" />
+                    <Link to="/">
+                        <img src="https://www.freepnglogos.com/uploads/comic-logo-png/comic-pow-explosion-logo-9.png" width="120" />
+                    </Link>
                 </a>
 
                 <nav>

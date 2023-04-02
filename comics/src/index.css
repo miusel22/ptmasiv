@@ -76,9 +76,18 @@ background-color: rgb(0, 0, 0);
   outline: 0;
 }
 
-.centered-card {
-  width: 500px; 
-  margin: 0 auto; 
-  margin-top: 50px; 
+.img-next-previous{
+  width: 124px;
+  padding:30px;
+}
+.img-next-previous:hover{
+cursor: pointer;
 }
 
+.center-all{
+  padding-top:100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 500px;
+}

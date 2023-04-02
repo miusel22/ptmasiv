@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Card, Col, Row } from 'antd';
+import { Card } from 'antd';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
@@ -7,9 +7,11 @@ import { fetchData, addElement } from '../redux/actions';
 import { useEffect } from 'react';
 import { message } from 'antd';
 import { Rate, Button } from 'antd';
+import Next from '../img/next.png';
+import Previous from '../img/previous.png';
 
 const Comics = () => {
-    const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
+    const desc = ['I hate it!', 'Bad', 'Normal', 'Good', 'I love it!'];
     const [messageApi, contextHolder] = message.useMessage();
     const [value, setValue] = useState();
     const [randomComicNum, setRandomComicNum] = useState(null);
@@ -19,7 +21,7 @@ const Comics = () => {
     const success = () => {
         messageApi.open({
             type: 'success',
-            content: 'the comic has been rated!',
+            content: 'The comic has been rated!',
         });
     };
     const dispatch = useDispatch();
@@ -66,26 +68,24 @@ const Comics = () => {
         <>
             {contextHolder}
             <div className='container'>
-                <button className="bnt-next" onClick={news}>
-                    Next
-                </button>
-                <Row gutter={16}>
-                    <Col span={8}>
-                        <Card
-                            className="centered-card"
-                            cover={<img src={data.img} />}
-                            style={{ textAlign: 'center' }}
-                            title={data.title} bordered={false}>
-                            <form>
-                                <span>
-                                    <Rate tooltips={desc} onChange={setValue} value={value} />
-                                </span>
+                <div className='center-all'>
+                    <img onClick={news} src={Previous} className="img-next-previous" />
+                    <Card
+                        className="centered-card"
+                        cover={<img src={data.img} />}
+                        style={{ textAlign: 'center' }}
+                        title={data.title} bordered={false}>
+                        <form>
+                            <span>
+                                <Rate tooltips={desc} onChange={setValue} value={value} />
+                            </span>
 
-                                {value && <Button type="primary" onClick={manejarSubmit}>Send</Button>}
-                            </form>
-                        </Card>
-                    </Col>
-                </Row>
+                            {value && <Button type="primary" onClick={manejarSubmit}>Send</Button>}
+                        </form>
+                    </Card>
+                    <img onClick={news} src={Next} className="img-next-previous" />
+                </div>
+
             </div>
         </>
     );
