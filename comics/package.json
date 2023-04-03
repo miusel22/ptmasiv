@@ -19,7 +19,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "npm run server && npm run client",
     "server": "node src/backend/server.js",
     "client": "react-scripts start",
     "build": "react-scripts build"
