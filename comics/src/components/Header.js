@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../header.css';
-import Logo from '../img/shield.png';
+import '../styles/header.css';
 
 export const Header = () => {
     return (
@@ -28,7 +27,7 @@ export const Header = () => {
             <div class="wrapper run-animation" id="animate">
                 <div class="logo">
 
-                    <span class="marvel">The cami's</span>
+                    <span class="marvel">The cami's comic</span>
                     <span class="studios">comics</span>
 
                 </div>

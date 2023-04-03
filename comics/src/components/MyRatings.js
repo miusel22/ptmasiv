@@ -12,26 +12,31 @@ const MyRatings = () => {
         <>
 
             <div className='container'>
-                <Divider>My comic's ratings </Divider>
-                <List
-                    locale={{ emptyText: 'No ratings' }}
-                    grid={{ gutter: 16, column: 1 }}
-                    dataSource={ratings}
-                    renderItem={(item) => (
-                        <List.Item>
-                            <Card
-                                className="centered-card"
-                                cover={<img src={item.img} />}
-                                title={item.title}
-                                bordered={false}
-                                style={{ textAlign: 'center' }}
-                            >
-                                <Rate disabled value={item.rating} />
-                            </Card>
-                        </List.Item>
-                    )}
-                />
+                <div className='center-ratings'>
+                    <Divider>
+                        <span className="title">My ratings</span> </Divider>
+                    <div className='container-ratings'>
+                    <List
+                        locale={{ emptyText: 'No ratings' }}
+                        grid={{ gutter: 8, column: 1 }}
+                        dataSource={ratings}
+                        renderItem={(item) => (
+                            <List.Item>
+                                <Card
+                                    className="centered-card"
+                                    cover={<img src={item.img} />}
+                                    title={item.title}
+                                    bordered={false}
+                                    style={{ textAlign: 'center' }}
+                                >
+                                    <Rate disabled value={item.rating} />
+                                </Card>
+                            </List.Item>
+                        )}
+                    />
+                    </div>
 
+                </div>
             </div>
         </>
     );
