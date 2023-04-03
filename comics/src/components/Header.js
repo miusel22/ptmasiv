@@ -27,7 +27,7 @@ export const Header = () => {
             <div class="wrapper run-animation" id="animate">
                 <div class="logo">
 
-                    <span class="marvel">The cami's comic</span>
+                    <span class="marvel">The cami's</span>
                     <span class="studios">comics</span>
 
                 </div>
