@@ -19,10 +19,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "npm run server && npm run client",
+    "start": "npm run client && serve -s build -l 5000 ",
+    "build": "react-scripts build",
     "server": "node src/backend/server.js",
-    "client": "react-scripts start",
-    "build": "react-scripts build"
+    "client": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
-    "less": "^4.1.3"
+    "less": "^4.1.3",
+    "serve": "^14.2.0"
   }
 }
